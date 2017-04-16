@@ -14,10 +14,14 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 private slots:
+
+    void  keyPressEvent(QKeyEvent *);
+
     void on_actionNew_triggered();
 
     void on_actionNew_Window_triggered();
