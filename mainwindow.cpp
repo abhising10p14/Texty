@@ -25,10 +25,12 @@
 #include <cstdlib>
 #include <cctype>
 #include<qtconcurrentmap.h> //for word count
+#include "header.h"
+#include<QTextCursor>
 
 using namespace QtConcurrent; //for word count
 typedef QMap<QString, int> WordCount; //for word count
-
+ Hash hashObj;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -42,6 +44,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 
 void MainWindow::keyPressEvent(QKeyEvent *e)
 {
@@ -533,6 +536,29 @@ void MainWindow::on_actionTree_View_triggered()
 
 void MainWindow::on_actionSpell_Check_triggered()
 {
+
+    QTextCursor cursor = ui->textEdit->textCursor();
+
+    QString s = cursor.selectedText();  // converting the selected text into string
+   // Hash hashObj;	//Hash class object, creates table and reads in file info
+    string str = s.toStdString();
+
+    if(!hashObj.searchForWord(str))  //Finds word selected by the cursor and returns true if the word is found in the dictonary
+    {
+
+        QString message =  "<div>" + s +  "</div>";
+        ui->textEdit->document()->setDefaultStyleSheet("div { color: red; }"); // it changes the color of selected word to
+                                                              // red if it is not spelled correctly
+        ui->textEdit->textCursor().insertHtml(message);
+         ui->textEdit->setTextColor("#000000");   // agan setting the color to black
+        //ui->textEdit->textCursor().insertBlock();
+
+    }
+
+
+
+
+
 
 }
 

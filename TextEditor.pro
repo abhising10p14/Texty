@@ -15,12 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
     dialog.cpp \
     font.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    header.cpp
 
 HEADERS  += mainwindow.h \
     dialog.h \
-    font.h
+    font.h \
+    header.h
 
 FORMS    += mainwindow.ui \
     dialog.ui \
     font.ui
+
+DISTFILES +=
