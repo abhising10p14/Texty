@@ -1,4 +1,4 @@
-
+#include<QFont>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include<QKeyEvent>
@@ -37,6 +37,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->textEdit); //For covering the whole central area for writing
+      //ui->textEdit->setTextColor("#ffffff");
+      ui->textEdit->setStyleSheet("background-color: black; color : white");
+      ui->textEdit->setFont( QFont( "Helvetica", 12 ) );;
 
 }
 
@@ -550,7 +553,18 @@ void MainWindow::on_actionSpell_Check_triggered()
         ui->textEdit->document()->setDefaultStyleSheet("div { color: red; }"); // it changes the color of selected word to
                                                               // red if it is not spelled correctly
         ui->textEdit->textCursor().insertHtml(message);
-         ui->textEdit->setTextColor("#000000");   // agan setting the color to black
+         ui->textEdit->setTextColor("#ffffff");   // agan setting the color to black
+        //ui->textEdit->textCursor().insertBlock();
+
+    }
+    if(hashObj.searchForWord(str))  //Finds word selected by the cursor and returns true if the word is found in the dictonary
+    {
+
+        QString message =  "<div>" + s +  "</div>";
+        ui->textEdit->document()->setDefaultStyleSheet("div { color: white; }"); // it changes the color of selected word to
+                                                              // red if it is not spelled correctly
+        ui->textEdit->textCursor().insertHtml(message);
+         ui->textEdit->setTextColor("#ffffff");   // agan setting the color to black
         //ui->textEdit->textCursor().insertBlock();
 
     }
